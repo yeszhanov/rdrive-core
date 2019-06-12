@@ -49,14 +49,7 @@ const DropdownContentUI = styled.div`
 `;
 
 const arrayOfSvg = [
-  {
-    svg: (
-      <DropdownIconUI width="8" height="11" viewBox="0 0 8 11">
-        <path d="M1 4.04L4.04 1L7.08 4.04" stroke="#BACCD8" />
-        <path d="M7.08008 6.46L4.04008 9.5L1.00008 6.46" stroke="#BACCD8" />
-      </DropdownIconUI>
-    )
-  },
+
   {
     svg: (
       <DropdownIconUI width="8" height="7" viewBox="0 0 8 7">
@@ -89,6 +82,8 @@ const arrayOfSvg = [
   }
 ];
 
+
+
 const DropdownArrows = () => {
   const [isOpen, setTrigger] = useState(false);
   const [isSelected, setSelector] = useState(null);
@@ -99,18 +94,27 @@ const DropdownArrows = () => {
   return (
     <DropdownArrowsUI onClick={() => setTrigger(!isOpen)}>
       <DropdownArrowsWrapperUI isOpen={isOpen}>
-        {isSelected ? arrayOfSvg[isSelected].svg : arrayOfSvg[0].svg}
+        {isSelected !== null ? (
+          arrayOfSvg[isSelected].svg
+        ) : (
+          <DropdownIconUI width="8" height="11" viewBox="0 0 8 11">
+            <path d="M1 4.04L4.04 1L7.08 4.04" stroke="#BACCD8" />
+            <path d="M7.08008 6.46L4.04008 9.5L1.00008 6.46" stroke="#BACCD8" />
+          </DropdownIconUI>
+        )}
       </DropdownArrowsWrapperUI>
       <DropdownContentUI isOpen={isOpen}>
-        {arrayOfSvg.map((item, idx) => {
-          const { svg } = item;
-          return idx === 0 ? null : (
-            <DropdownArrowsWrapperUI key={idx} onClick={() => SelectIcon(idx)}>
-              {svg}
-            </DropdownArrowsWrapperUI>
-          );
-        })}
-      </DropdownContentUI>
+    {arrayOfSvg.map((item, idx) => {
+      const { svg } = item;
+      if(isSelected != idx){
+        return (
+          <DropdownArrowsWrapperUI key={idx} onClick={() => SelectIcon(idx)}>
+            {svg}
+          </DropdownArrowsWrapperUI>
+        );
+      }
+    })}
+  </DropdownContentUI>
     </DropdownArrowsUI>
   );
 };

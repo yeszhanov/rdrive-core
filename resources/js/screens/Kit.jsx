@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+//components
 import Layout from "components/ui/Layout";
 import H from "components/ui/H";
 import Button from "components/ui/Button";
@@ -10,10 +11,12 @@ import Star from "components/ui/Star";
 import Switch from "components/ui/Switch";
 import PreviewButton from "components/ui/PreviewButton";
 import DropdownArrows from "components/ui/DropdownArrows";
-
+import DropdownText from "components/ui/DropdownText";
 import AddButton from "components/ui/AddButton";
 import Calendar from "components/ui/Calendar";
+//data 
 import links from "../mockup/links";
+import dataDropdownText from "../mockup/data-for-dropdown"
 
 const Kit = () => {
   const [isChecked, setChecker] = useState(false);
@@ -34,6 +37,7 @@ const Kit = () => {
         <Button link="/test">Ссылка</Button>
         <Input />
         <DropdownArrows/>
+        <DropdownText data={dataDropdownText} title='Наборы'/>
         <Checkbox
           checked={isChecked}
           onChange={() => setChecker(event.target.checked)}

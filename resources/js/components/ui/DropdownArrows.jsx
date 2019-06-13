@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef ,useEffect} from "react";
 import styled from "styled-components";
 
 const DropdownIconUI = styled.svg`
@@ -90,9 +90,28 @@ const DropdownArrows = () => {
   const SelectIcon = idx => {
     setSelector(idx);
   };
+  const node = useRef();
+  const handleClickOutside=(e)=>{
+    if (node.current.contains(e.target)) {
 
+      return;
+    }
+
+    setTrigger(false)
+  }
+  useEffect(() => {
+    if (open) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpen]);
   return (
-    <DropdownArrowsUI onClick={() => setTrigger(!isOpen)}>
+    <DropdownArrowsUI ref={node} onClick={(e) => setTrigger(!isOpen )}>
       <DropdownArrowsWrapperUI isOpen={isOpen}>
         {isSelected !== null ? (
           arrayOfSvg[isSelected].svg

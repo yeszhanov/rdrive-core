@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef ,useEffect} from "react";
 import styled from "styled-components";
 
 const DropdownTitleUI = styled.span`
@@ -36,7 +36,7 @@ color: #3D4671;
   }
 `;
 const DropdownDisplayUI = styled.div`
-color: #3D4671;
+color: #3d4671;
   position: relative;
   background: #dbeaf4;
   width: 140px;
@@ -47,6 +47,9 @@ color: #3D4671;
   font: 15px/19px Source Sans Pro;
   margin-top: 5px;
   padding: 8px 7px 8px 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 const DropdownContentUI = styled.div`
   position: absolute;
@@ -63,12 +66,38 @@ const DropdownText = ({ data, title }) => {
   const [isSelected, setSelector] = useState(null);
   const SelectIcon = idx => {
     setSelector(idx);
+    setTrigger(!isOpen)
   };
 
+
+  const node = useRef();
+
+  const handleClickOutside=(e)=>{
+    if (node.current.contains(e.target)) {
+
+      return;
+    }
+
+    setTrigger(false)
+  }
+
+  useEffect(() => {
+    if (open) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpen]);
+  
+
   return (
-    <DropdownTextWrapperUI >
+    <DropdownTextWrapperUI ref={node}>
       <DropdownTitleUI >{title}</DropdownTitleUI>
-      <DropdownDisplayUI onClick={() => setTrigger(!isOpen)}>
+      <DropdownDisplayUI onClick={(e) => setTrigger(!isOpen )}>
         {isSelected !== null ? data[isSelected].name : "выбрать"}
         <DropdownIconUI viewBox="0 0 11 7">
           <path d="M1 1L5.5 6L10 1" stroke="#3D4671" />

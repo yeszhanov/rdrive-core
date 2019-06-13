@@ -66,9 +66,9 @@ const DropdownText = ({ data, title }) => {
   };
 
   return (
-    <DropdownTextWrapperUI onClick={() => setTrigger(!isOpen)}>
-      <DropdownTitleUI>{title}</DropdownTitleUI>
-      <DropdownDisplayUI>
+    <DropdownTextWrapperUI >
+      <DropdownTitleUI >{title}</DropdownTitleUI>
+      <DropdownDisplayUI onClick={() => setTrigger(!isOpen)}>
         {isSelected !== null ? data[isSelected].name : "выбрать"}
         <DropdownIconUI viewBox="0 0 11 7">
           <path d="M1 1L5.5 6L10 1" stroke="#3D4671" />

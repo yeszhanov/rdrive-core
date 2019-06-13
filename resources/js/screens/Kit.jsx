@@ -14,6 +14,7 @@ import DropdownArrows from "components/ui/DropdownArrows";
 import DropdownText from "components/ui/DropdownText";
 import AddButton from "components/ui/AddButton";
 import Calendar from "components/ui/Calendar";
+import Sort from "components/ui/Sort";
 //data 
 import links from "../mockup/links";
 import dataDropdownText from "../mockup/data-for-dropdown"
@@ -41,6 +42,7 @@ const Kit = () => {
         <Checkbox
           checked={isChecked}
           onChange={() => setChecker(event.target.checked)}
+          label="Активность"
         />
         <Switch />
         <Star
@@ -53,7 +55,7 @@ const Kit = () => {
         <PreviewButton/>
         <Calendar/>
         <AddButton/>
-        
+        <Sort/>
       </Layout>
     </Layout>
   );

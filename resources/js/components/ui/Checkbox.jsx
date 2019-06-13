@@ -2,6 +2,13 @@ import React from "react";
 
 import styled from "styled-components";
 const CheckboxLabelUI = styled.label``;
+const CheckboxSpanUI = styled.span`
+  margin-left: 6px;
+
+  color: #3d4671;
+
+  font: 12px/15px Source Sans Pro;
+`;
 const CheckboxContainer = styled.div`
   display: inline-block;
   vertical-align: middle;
@@ -46,7 +53,7 @@ const StyledCheckbox = styled.div`
   }
 `;
 
-const Checkbox = ({ checked, ...attrs }) => (
+const Checkbox = ({ checked, label, ...attrs }) => (
   <CheckboxLabelUI>
     <CheckboxContainer>
       <HiddenCheckbox checked={checked} {...attrs} />
@@ -56,6 +63,7 @@ const Checkbox = ({ checked, ...attrs }) => (
         </Icon>
       </StyledCheckbox>
     </CheckboxContainer>
+    <CheckboxSpanUI>{label}</CheckboxSpanUI>
   </CheckboxLabelUI>
 );
 

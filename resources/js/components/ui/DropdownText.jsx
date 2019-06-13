@@ -50,6 +50,7 @@ color: #3d4671;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  word-break:break-all
 `;
 const DropdownContentUI = styled.div`
   position: absolute;

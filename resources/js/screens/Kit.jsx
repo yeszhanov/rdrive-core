@@ -15,9 +15,11 @@ import DropdownText from "components/ui/DropdownText";
 import AddButton from "components/ui/AddButton";
 import Calendar from "components/ui/Calendar";
 import Sort from "components/ui/Sort";
-//data 
+import Panel from "components/ui/Panel";
+import PanelTitle from "components/ui/PanelTitle"
+//data
 import links from "../mockup/links";
-import dataDropdownText from "../mockup/data-for-dropdown"
+import dataDropdownText from "../mockup/data-for-dropdown";
 
 const Kit = () => {
   const [isChecked, setChecker] = useState(false);
@@ -27,8 +29,8 @@ const Kit = () => {
       <Layout width="250px" height="100vh">
         <Sidebar data={links} title="Kazkommerts Securities" />
       </Layout>
-      
-      <Layout vertical >
+
+      <Layout vertical>
         <H size="1" bold color="#3D4671">
           Kitdasfaaaaa
         </H>
@@ -36,9 +38,9 @@ const Kit = () => {
         <Button disabled> Disabled </Button>
         <Button system>Системные </Button>
         <Button link="/test">Ссылка</Button>
-        <Input />
-        <DropdownArrows/>
-        <DropdownText data={dataDropdownText} title='Наборы'/>
+        <Input label="Подпись" />
+        <DropdownArrows />
+        <DropdownText data={dataDropdownText} title="Наборы" />
         <Checkbox
           checked={isChecked}
           onChange={() => setChecker(event.target.checked)}
@@ -49,13 +51,30 @@ const Kit = () => {
           checked={isBookmarked}
           onChange={() => setBookmark(event.target.checked)}
         />
+        <Panel>
+          <PanelTitle title='Категория' />
+          <DropdownText data={dataDropdownText} title="Наборы" />
+          <DropdownText data={dataDropdownText} title="Наборы" />
+          <Input panel label="Подпись" />
+          <Input panel label="Подпись" />
+          <Input panel label="Подпись" />
 
-        <DeleteButton text/>
+        </Panel>
+        <DeleteButton text />
         <DeleteButton />
-        <PreviewButton/>
-        <Calendar/>
-        <AddButton/>
-        <Sort/>
+        <PreviewButton />
+        <Calendar />
+        <AddButton />
+        <Sort />
+
+        {/* <Panel >
+          <PanelTitle>
+
+          </PanelTitle>
+          <FormGroup>
+              <FormGroupLabel></FormGroupLabel>  
+            </FormGroup> 
+        </Panel>  */}
       </Layout>
     </Layout>
   );

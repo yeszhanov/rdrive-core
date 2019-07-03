@@ -1,43 +1,35 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment } from "react";
 import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 import { string } from "postcss-selector-parser";
-import PreviewButton from "./PreviewButton";
 import Button from "./Button";
 import H from "./H";
 const SidebarUI = styled.nav`
-  display: inline;
   color: #3d4671;
   border-right: 1px solid #dbeaf4;
   height: 100%;
-  width: 250px;
 `;
 
 const BrandUI = styled.div`
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  height: 50px;
-  width: 100%;
-  border-bottom: 1px solid #dbeaf4;
-  img {
-    margin-right: 4px;
-  }
-  h6 {
-    margin: 0;
-    font-weight: bold;
-    font-size: 12px;
-  }
-
-`;
-
-const SidebarMainLinkUI = styled.div`
   display: flex;
   align-items: center;
-  padding-left: 58px;
-  height: 30px;
+
+  height: 50px;
   border-bottom: 1px solid #dbeaf4;
+  figure {
+    display: flex;
+    align-items: center;
+    img {
+      margin-right: 4px;
+    }
+    h6 {
+      margin: 0;
+      font-weight: bold;
+      font-size: 12px;
+    }
+  }
 `;
+
 const SidebarLinkListUI = styled.ul`
   padding-top: 15px;
   padding-left: 0;
@@ -57,7 +49,6 @@ const SidebarLinkListUI = styled.ul`
     }
   `};
 `;
-
 const LinkUI = styled(Link)`
   display: flex;
   font-size: 14px;
@@ -67,65 +58,14 @@ const LinkUI = styled(Link)`
   background-color: transparent;
   padding-left: 58px;
   text-decoration: none;
-  
+  &:hover {
+    background-color: #edf4f8;
+  }
   :before {
-    
-    
+    content: "o";
     margin-right: 10px;
     font-size: 6px;
   }
-`;
-
-// font-family: 'Icons';
-//     content:'\0055'
-
-const LinkSubUI = styled(Link)`
-  display: flex;
-  font-size: 14px;
-  align-items: center;
-  height: 100%;
-  color: #737a9b;
-  background-color: transparent;
-  padding-left: 78px;
-  text-decoration: none;
-  &:hover {
-    background-color: #edf4f8;
-    width:100%;
-  }
-  :before {
-    content: '•';
-    margin-right: 10px;
-    font-size: 6px;
-  }
-`;
-const SidebarListItemUI = styled.li`
-  display:flex;
-  align-items:center;
-  min-height: 27px;
-  cursor:pointer;
-  &:hover {
-    background-color: #edf4f8;
-    width:100%;
-  }
-  ${({ isOpen }) =>
-    isOpen &&
-    `
-      background-color:#737A9B;
-      &:hover {
-        background-color: #737A9B;
-        
-      }
-      ${LinkUI}{
-        color:#fff;
-        
-      }
-      
-  `};
-  ${({ sub }) =>
-    sub &&
-    `
-    display:none;
-  `};
 `;
 
 const ButtonPlainUI = styled.button`
@@ -140,7 +80,44 @@ const ButtonPlainUI = styled.button`
     bottom: -2px;
   }
 `;
+const SidebarMainLinkUI = styled.div`
+  display: flex;
+  align-items: center;
+  padding-left: 58px;
+  height: 30px;
+  border-bottom: 1px solid #dbeaf4;
+`;
+const SidebarListItemUI = styled.li`
+  min-height: 27px;
 
+  &${SidebarLinkListUI}: {
+    display: none;
+  }
+  ${({ sub }) =>
+    sub &&
+    `
+    background:red;  
+
+
+  `};
+  ${({ opened }) =>
+    opened &&
+    `
+  ul {
+    display: block;
+  }
+
+  & > ${LinkUI} {
+    border:0;
+    color: #ffffff;
+    background-color: #737A9B;
+    &:hover {
+      color: #ffffff;
+      background-color: #737A9B;
+    }
+  }
+`}
+`;
 const SidebarFooterUI = styled.div`
   display: flex;
   flex-flow: column;
@@ -161,65 +138,41 @@ const SidebarFooterUI = styled.div`
     margin: 22px 0 0 0;
   }
 `;
-
-const Test = styled.div`
-  display: none;
-  flex-flow: column;
-  ${({ isOpen }) =>
-    isOpen &&
-    `
-    display:flex
-  `};
-`;
-
-const Sidebar = ({ title, children, data, opened,logo, ...attrs }) => {
-  const [collapseElements, setCollapse] = useState({});
-
-  const handleClick = idx => {
-    const currentElements = Object.assign({}, collapseElements);
-
-    setCollapse({ ...currentElements, [idx]: !collapseElements[idx] });
-  };
-  console.log(logo)
-
+const Sidebar = ({ title, children, data, opened, ...attrs }) => {
+  const a = 1;
   return (
     <SidebarUI>
       <BrandUI>
-        {/* <figure> */}
-        <img
-            src={require("../../../../public/images/brand-logo.png")}
-            alt="Brand name"
-          />
+        <figure>
+          {/* <img  src={require('../../mockup/images/brand-logo.png')} alt="Brand name" /> */}
           <H size="6" bold>
-          
             {title}
           </H>
-        {/* </figure> */}
+        </figure>
       </BrandUI>
       <SidebarMainLinkUI>
-          <PreviewButton text="Перейти по ссылке"/>
+        <Button link="#">Перейти на asdaсайт</Button>
       </SidebarMainLinkUI>
+
       <SidebarLinkListUI>
         {data.map((item, idx) => {
-          return typeof item.data === "string" ? (
+          const { name, data } = item;
+          return typeof data === "string" ? (
             <SidebarListItemUI key={idx}>
-              <LinkUI to="#">{item.name}</LinkUI>
+              <LinkUI to="#">{name}</LinkUI>
             </SidebarListItemUI>
           ) : (
             <Fragment key={idx}>
-              <SidebarListItemUI
-                onClick={() => handleClick(idx)}
-                isOpen={collapseElements[idx]}
-              >
-                <LinkUI to="#">{item.name}</LinkUI>
+              <SidebarListItemUI opened>
+                <LinkUI to="#">{name}</LinkUI>
+                <SidebarLinkListUI sub>
+                  {data.map((sub, ids) => (
+                    <SidebarListItemUI key={ids}>
+                      <LinkUI to="#">{sub.name}</LinkUI>
+                    </SidebarListItemUI>
+                  ))}
+                </SidebarLinkListUI>
               </SidebarListItemUI>
-              {item.data.map((subs, ids) => {
-                return (
-                  <SidebarListItemUI sub={!collapseElements[idx]} key={ids}>
-                    <LinkSubUI to="#">{subs.name}</LinkSubUI>
-                  </SidebarListItemUI>
-                );
-              })}
             </Fragment>
           );
         })}

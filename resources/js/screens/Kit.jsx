@@ -20,14 +20,14 @@ import PanelTitle from "components/ui/PanelTitle"
 //data
 import links from "../mockup/links";
 import dataDropdownText from "../mockup/data-for-dropdown";
-
+// import dataDrosdfpdownText from "../../../public/images/brand-logo.png";
 const Kit = () => {
   const [isChecked, setChecker] = useState(false);
   const [isBookmarked, setBookmark] = useState(false);
   return (
     <Layout>
       <Layout width="250px" height="100vh">
-        <Sidebar data={links} title="Kazkommerts Securities" />
+        <Sidebar data={links} title="Kazkommerts Securities" logo="../../../public/images/brand-logo.png"/>
       </Layout>
 
       <Layout vertical>
@@ -62,7 +62,7 @@ const Kit = () => {
         </Panel>
         <DeleteButton text />
         <DeleteButton />
-        <PreviewButton />
+        <PreviewButton text='Предсмотр'/>
         <Calendar />
         <AddButton />
         <Sort />

@@ -38,7 +38,6 @@ const H6UI = styled.h6`
   color: ${props => (props.color ? props.color : "#3D4671")};
   font-weight: ${props => (props.bold ? "bold" : "normal")};
   font-size: 12px;
-  margin: 0 0 15px 0;
 `;
 const renderTitle = (size, color, children, bold, ...attrs) => {
   console.log(size);

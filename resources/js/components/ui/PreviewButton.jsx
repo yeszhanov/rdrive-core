@@ -17,6 +17,7 @@ const PreviewTextUI = styled.span`
 }
 `;
 const PreviewButtonUI = styled.button`
+  padding:0;
   display: inline-flex;
   border: none;
   align-items: center;

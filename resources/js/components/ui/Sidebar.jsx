@@ -5,11 +5,13 @@ import { string } from "postcss-selector-parser";
 import PreviewButton from "./PreviewButton";
 import Button from "./Button";
 import H from "./H";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import 'font-awesome/css/font-awesome.min.css';
 const SidebarUI = styled.nav`
-  display: inline;
+  
   color: #3d4671;
   border-right: 1px solid #dbeaf4;
-  height: 100%;
+  height:100%;
   width: 250px;
 `;
 
@@ -68,16 +70,18 @@ const LinkUI = styled(Link)`
   padding-left: 58px;
   text-decoration: none;
   
-  :before {
-    
-    
-    margin-right: 10px;
-    font-size: 6px;
-  }
+  
 `;
 
-// font-family: 'Icons';
-//     content:'\0055'
+const IconWrapperUI = styled.span`
+position: absolute;
+margin-left: 30px;
+svg{
+    path{
+        fill:#737A9B;
+    }
+}
+`
 
 const LinkSubUI = styled(Link)`
   display: flex;
@@ -94,11 +98,12 @@ const LinkSubUI = styled(Link)`
   }
   :before {
     content: '•';
-    margin-right: 10px;
+    
     font-size: 6px;
   }
 `;
 const SidebarListItemUI = styled.li`
+  position:relative;
   display:flex;
   align-items:center;
   min-height: 27px;
@@ -118,6 +123,13 @@ const SidebarListItemUI = styled.li`
       ${LinkUI}{
         color:#fff;
         
+      }
+      ${IconWrapperUI}{
+          svg{
+              path{
+                  fill:#fff;
+              }
+          }
       }
       
   `};
@@ -140,6 +152,8 @@ const ButtonPlainUI = styled.button`
     bottom: -2px;
   }
 `;
+
+
 
 const SidebarFooterUI = styled.div`
   display: flex;
@@ -197,12 +211,14 @@ const Sidebar = ({ title, children, data, opened,logo, ...attrs }) => {
         {/* </figure> */}
       </BrandUI>
       <SidebarMainLinkUI>
+      
           <PreviewButton text="Перейти по ссылке"/>
       </SidebarMainLinkUI>
       <SidebarLinkListUI>
         {data.map((item, idx) => {
           return typeof item.data === "string" ? (
             <SidebarListItemUI key={idx}>
+                <IconWrapperUI><FontAwesomeIcon icon="caret-right" /></IconWrapperUI>
               <LinkUI to="#">{item.name}</LinkUI>
             </SidebarListItemUI>
           ) : (
@@ -211,11 +227,13 @@ const Sidebar = ({ title, children, data, opened,logo, ...attrs }) => {
                 onClick={() => handleClick(idx)}
                 isOpen={collapseElements[idx]}
               >
+                  <IconWrapperUI><FontAwesomeIcon icon="caret-right" /></IconWrapperUI>
                 <LinkUI to="#">{item.name}</LinkUI>
               </SidebarListItemUI>
               {item.data.map((subs, ids) => {
                 return (
                   <SidebarListItemUI sub={!collapseElements[idx]} key={ids}>
+                      
                     <LinkSubUI to="#">{subs.name}</LinkSubUI>
                   </SidebarListItemUI>
                 );

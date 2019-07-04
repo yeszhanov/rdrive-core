@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import styled, { css } from "styled-components";
 //components
 import Layout from "components/ui/Layout";
 import H from "components/ui/H";
@@ -16,21 +17,38 @@ import AddButton from "components/ui/AddButton";
 import Calendar from "components/ui/Calendar";
 import Sort from "components/ui/Sort";
 import Panel from "components/ui/Panel";
-import PanelTitle from "components/ui/PanelTitle"
+import PanelTitle from "components/ui/PanelTitle";
 //data
 import links from "../mockup/links";
 import dataDropdownText from "../mockup/data-for-dropdown";
-// import dataDrosdfpdownText from "../../../public/images/brand-logo.png";
+
+const WrapperUI = styled.div`
+  display: flex;
+  height: 100vh;
+  box-sizing: border-box;
+`;
+const ContentWrapperUI = styled.div`
+width:100%
+overflow:scroll;
+padding:5px;
+`;
+const SectionBlock = styled.div`
+  
+`;
 const Kit = () => {
   const [isChecked, setChecker] = useState(false);
   const [isBookmarked, setBookmark] = useState(false);
   return (
-    <Layout>
-      <Layout width="250px" height="100vh">
-        <Sidebar data={links} title="Kazkommerts Securities" logo="../../../public/images/brand-logo.png"/>
-      </Layout>
+    <WrapperUI>
+      <div>
+        <Sidebar
+          data={links}
+          title="Kazkommerts Securities"
+          logo="../../../public/images/brand-logo.png"
+        />
+      </div>
 
-      <Layout vertical>
+      <ContentWrapperUI>
         <H size="1" bold color="#3D4671">
           Kitdasfaaaaa
         </H>
@@ -52,17 +70,16 @@ const Kit = () => {
           onChange={() => setBookmark(event.target.checked)}
         />
         <Panel>
-          <PanelTitle title='Категория' />
+          <PanelTitle title="Категория" />
           <DropdownText data={dataDropdownText} title="Наборы" />
           <DropdownText data={dataDropdownText} title="Наборы" />
           <Input panel label="Подпись" />
           <Input panel label="Подпись" />
           <Input panel label="Подпись" />
-
         </Panel>
         <DeleteButton text />
         <DeleteButton />
-        <PreviewButton text='Предсмотр'/>
+        <PreviewButton text="Предсмотр" />
         <Calendar />
         <AddButton />
         <Sort />
@@ -75,8 +92,8 @@ const Kit = () => {
               <FormGroupLabel></FormGroupLabel>  
             </FormGroup> 
         </Panel>  */}
-      </Layout>
-    </Layout>
+      </ContentWrapperUI>
+    </WrapperUI>
   );
 };
 

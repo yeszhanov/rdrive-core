@@ -6,7 +6,6 @@ import PreviewButton from "./PreviewButton";
 import Button from "./Button";
 import H from "./H";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import 'font-awesome/css/font-awesome.min.css';
 const SidebarUI = styled.nav`
   
   color: #3d4671;

@@ -1,5 +1,3 @@
-
-
 import React, { Fragment, useState, useEffect } from "react";
 import styled, { css } from "styled-components";
 
@@ -17,10 +15,8 @@ const TableThUI = styled.th`
   color: #737a9b;
 `;
 
-
 const TableTrUI = styled.tr`
   cursor: pointer;
-
   :hover {
     background: #edf4f9;
   }
@@ -35,9 +31,7 @@ const TableTHeadUI = styled.thead`
   }
 `;
 
-const TableTBodyUI = styled.tbody`
-
-`
+const TableTBodyUI = styled.tbody``;
 
 const Table = ({ children, titles, data }) => {
   const [amountColumns, setAmountColumns] = useState(0);

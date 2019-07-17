@@ -11,7 +11,6 @@ const InputWrapperUI = styled.div`
 const InputLabelUI = styled.label`
   font: 12px/15px Source Sans Pro;
   color: #4e5269;
-  margin-bottom: 5px;
 `;
 
 const InputUI = styled.input`
@@ -24,17 +23,19 @@ const InputUI = styled.input`
   font-size: 15px;
   color: #3d4671;
   line-height: normal;
-  width:${props => (props.panel ? "140px" : "220px")} ;
+  width:${props => (props.width ? props.width : "auto")} ;
+
+ 
   outline: none;
   :focus {
     border-color: #177ff2;
   }
 `;
-
-const Input = ({ label, ...attrs }) => (
+// width:${props => (props.panel ? "140px" : "220px")} ;
+const Input = ({ label,placeholder,width, ...attrs }) => (
   <InputWrapperUI>
     <InputLabelUI htmlFor="customInput">{label}</InputLabelUI>
-    <InputUI id="customInput" {...attrs} />
+    <InputUI id="customInput" width={width} placeholder={placeholder} {...attrs} />
   </InputWrapperUI>
 );
 

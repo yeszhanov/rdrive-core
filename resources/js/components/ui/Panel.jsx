@@ -9,10 +9,11 @@ const PanelUI = styled.div`
   > :not(:first-child) {
     border-top: 1px solid #dbeaf4;
     margin: 0 10px 10px 10px;
-    padding-top:10px;
   }
   
-`;
+  `;
+  
+  // padding-top:10px;
 
 const Panel = ({ children }) => <PanelUI>{children}</PanelUI>;
 export default Panel;

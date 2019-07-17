@@ -128,9 +128,9 @@ const Kit = () => {
           <PanelTitle title="Категория" />
           <DropdownText data={dataDropdownText} title="Наборы" />
           <DropdownText data={dataDropdownText} title="Наборы" />
-          <Input panel label="Подпись" />
-          <Input panel label="Подпись" />
-          <Input panel label="Подпись" />
+          <Input width={'140px'} label="Подпись" />
+          <Input width={'140px'} label="Подпись" />
+          <Input width={'140px'} label="Подпись" />
         </Panel>
         <DeleteButton text />
         <DeleteButton />
@@ -138,16 +138,6 @@ const Kit = () => {
         <Calendar />
         <AddButton />
         <Sort />
-
-        {/* <Panel >
-          <PanelTitle>
-
-          </PanelTitle>
-          <FormGroup>
-              <FormGroupLabel></FormGroupLabel>  
-            </FormGroup> 
-        </Panel>  */}
-       
       </ContentWrapperUI>
     </WrapperUI>
   );

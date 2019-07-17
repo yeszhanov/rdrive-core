@@ -6,12 +6,11 @@ const ButtonUI = styled.button`
   cursor: pointer;
   color: ${props => (props.system ? "#3D4671" : "#ffffff")};
   background-color: ${props => (props.system ? "#DBEAF4" : "#177FF2")};
+  width: ${props => (props.width ? props.width : "auto")};
+  height:${props => (props.height ? props.height : "auto")};
   display: inline-block;
   text-align: center;
   vertical-align: middle;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   outline: none;
   user-select: none;
   border: 1px solid transparent;
@@ -41,13 +40,13 @@ const LinkUI = styled(Link)`
   color: ${props => (props.color ? props.color : "#d1d1d1")};
 `;
 
-const Button = ({ children, color, system, link, disabled, ...attrs }) =>
+const Button = ({ children, color, system, link, disabled,width, height,...attrs }) =>
   link ? (
     <LinkUI {...attrs} to={link}>
       {children}
     </LinkUI>
   ) : (
-    <ButtonUI {...attrs} system={system} color={color} disabled={disabled}>
+    <ButtonUI {...attrs} system={system} color={color} disabled={disabled} width={width} height={height}>
       {children}
     </ButtonUI>
   );

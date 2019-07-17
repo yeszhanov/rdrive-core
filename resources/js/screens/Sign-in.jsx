@@ -15,7 +15,7 @@ class SignIn extends Component {
         return ( 
             <Div vertical width={"333px"} alignItems={"center"}>
                 <img src={Logo} alt=""/>
-                <Input placeholder={'Логин'} width={'333px'}/>
+                <Input placeholder={'Логин'} width={'333px'} onChange={(e) => console.log(e.target.value)}/>
                 <Input placeholder={'Пароль'} width={'333px'}/>
                 <Button width={'333px'} >Войти </Button>
             </Div>

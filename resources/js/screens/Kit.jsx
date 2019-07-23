@@ -19,6 +19,7 @@ import Sort from "components/ui/Sort";
 import Panel from "components/ui/Panel";
 import PanelTitle from "components/ui/PanelTitle";
 import Table from "components/ui/Table";
+import TagInput from "components/ui/TagInput"
 //data
 import links from "../mockup/links";
 import dataDropdownText from "../mockup/data-for-dropdown";
@@ -108,6 +109,7 @@ const Kit = () => {
         <Button system>Системные </Button>
         <Button link="/test">Ссылка</Button>
         <Input label="Подпись" />
+        
         <DropdownArrows />
         <DropdownText data={dataDropdownText} title="Наборы"  />
         <Checkbox
@@ -137,7 +139,13 @@ const Kit = () => {
         <PreviewButton text="Предсмотр" />
         <Calendar />
         <AddButton />
+        <br/>
+        <br/>
+        <TagInput />
+        <br/>
+        <br/>
         <Sort />
+        
       </ContentWrapperUI>
     </WrapperUI>
   );

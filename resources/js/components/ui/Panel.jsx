@@ -1,19 +1,33 @@
-import React from "react";
+import React,{Fragment} from "react";
 import styled from "styled-components";
 
 const PanelUI = styled.div`
   display: inline-flex;
+  max-width: 160px;
   flex-flow: column;
   box-shadow: 0px 1px 2px rgba(61, 70, 113, 0.17);
-    
-  > :not(:first-child) {
-    border-top: 1px solid #dbeaf4;
-    margin: 0 10px 10px 10px;
+  >:last-child {
+    display:none;
+  }   
+  >:nth-child(odd){
+    padding:10px;
   }
   
-  `;
   
-  // padding-top:10px;
+  `;
+const PanelLineBreakUI=styled.div`
+  width:100%;
+  height:1px;
+  background:#dbeaf4;
+`
 
-const Panel = ({ children }) => <PanelUI>{children}</PanelUI>;
+
+const Panel = ({ children }) => <PanelUI>{children.map((child,idx)=>{
+  return(
+    <Fragment key={idx}>
+      {child}
+      <PanelLineBreakUI/>
+    </Fragment>
+  )
+})}</PanelUI>;
 export default Panel;
